@@ -101,7 +101,7 @@ The application is live on Heroku. Point your custom cURL or Postman requests [h
 7. Test your endpoints with [Postman](https://getpostman.com).
     - Register 2 users - assign the Standard role to one and Premium role to the other.
     - Sign into each account and make sure to capture the JWT.
-    - Import the postman collection `./backend/udacity-fsnd-capstone-instafluencer.json`
+    - Import the postman collection `.backend/udacity-fsnd-capstone-instafluencer.postman_collection.json`
     - Right-clicking the collection folder for Standard and Premium, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
     - Run the collection and correct any errors.
     - Export the collection overwriting the one we've included so that we have your proper JWTs during review!

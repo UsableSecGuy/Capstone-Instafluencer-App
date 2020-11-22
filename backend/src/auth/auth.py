@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'fsnd-demo.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'coffeeshop'
+API_AUDIENCE = 'instafluencer'
 
 ## AuthError Exception
 '''

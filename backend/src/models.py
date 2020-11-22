@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, create_engine
+from sqlalchemy import Column, String, Integer, ARRAY, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
@@ -20,23 +20,34 @@ def setup_db(app, database_path=database_path):
 
 
 '''
-Person
-Have title and release year
+Instafluencer
+have id, username,full_name, profile_link, profile_pic_link,
+followers, posts_per_week, engagement, hashtags
 '''
-class Person(db.Model):
-  __tablename__ = 'People'
+class Instafluencer(db.Model):
+    __tablename__ = 'instafluencer'
 
-  id = Column(Integer, primary_key=True)
-  name = Column(String)
-  catchphrase = Column(String)
-  test_change = Column(String)
+    id = Column(db.Integer, primary_key=True)
+    username = Column(db.String, unique=True)
+    full_name = db.Column(db.String, nullable=False)
+    profile_pic_link = db.Column(db.String, nullable=False)
+    profile_link = db.Column(db.String, unique=True)
+    followers = db.Column(db.Integer)
+    posts_per_week = db.Column(db.Integer)
+    engagement = db.Column(db.String)
+    hashtags = ARRAY(db.String)
 
-  def __init__(self, name, catchphrase=""):
-    self.name = name
-    self.catchphrase = catchphrase
+    #also needs relationship to show models
+    saved_instafluencers = db.relationship('Saved', backref='influencer', lazy=True)
 
-  def format(self):
-    return {
-      'id': self.id,
-      'name': self.name,
-      'catchphrase': self.catchphrase}
+'''
+SavedInsta
+have id, username, insta_fluencer_id, date_saved
+'''
+class SavedInsta(db.Model):
+    __tablename__='saved_insta'
+
+    id = Column(db.Integer, primary_key=True)
+    username = Column(db.String, unique=True)
+    insta_fluencer_id = db.Column(db.Integer, db.ForeignKey('instafluencer.id'), nullable=False)
+    date_saved = Column(db.DateTime)
