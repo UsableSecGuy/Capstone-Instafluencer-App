@@ -57,7 +57,7 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 ## Running The Server (on Heroku)
 
-The application is live on Heroku. Point your custom cURL or Postman requests [here]().
+The application is live on Heroku. Point your custom cURL or Postman requests [here](https://instafluencer.herokuapp.com/).
 
 
 ## API Endpoints
