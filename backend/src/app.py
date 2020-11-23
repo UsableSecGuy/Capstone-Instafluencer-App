@@ -1,11 +1,11 @@
 import os
-from flask import Flask, request, jsonify, abort
 from sqlalchemy import exc
 import json
+from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 
-from models import db_drop_and_create_all, setup_db, Drink
-from .auth.auth import AuthError, requires_auth
+from models import db_drop_and_create_all, setup_db, Instafluencer, SavedInsta
+from auth.auth import AuthError, requires_auth
 
 
 def create_app(test_config=None):
@@ -21,28 +21,29 @@ def create_app(test_config=None):
     '''
     # db_drop_and_create_all()
 
-    ## ROUTES
+    # ROUTES
     '''
     @TODO implement endpoint
         GET /drinks
             it should be a public endpoint
             it should contain only the drink.short() data representation
-        returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
-            or appropriate status code indicating reason for failure
+        returns status code 200 and json {"success": True, "drinks": drinks}
+        where drinks is the list of drinks
+        or appropriate status code indicating reason for failure
     '''
-    @app.route('/drinks')
+    @app.route('/saved-')
     def get_drinks():
         try:
 
             all_drinks = Drink.query.order_by('id').all()
 
-            formatted_drinks=[drink.short() for drink in all_drinks]
+            formatted_drinks = [drink.short() for drink in all_drinks]
 
             return jsonify({
-            'success': True,
-            'drinks': formatted_drinks
+                'success': True,
+                'drinks': formatted_drinks
             })
-        except:
+        except BaseException:
             abort(404)
 
     '''
@@ -61,20 +62,18 @@ def create_app(test_config=None):
 
             all_drinks = Drink.query.order_by('id').all()
 
-            formatted_drinks=[drink.long() for drink in all_drinks]
+            formatted_drinks = [drink.long() for drink in all_drinks]
 
             return jsonify({
-            'success': True,
-            'drinks': formatted_drinks
+                'success': True,
+                'drinks': formatted_drinks
             })
-        except:
+        except BaseException:
             abort(404)
 
-
     '''
-    @TODO implement endpoint
-        POST /drinks
-            it should create a new row in the drinks table
+        POST /insta-fluencers
+            it should create a new row in the instafluencer table
             it should require the 'post:drinks' permission
             it should contain the drink.long() data representation
         returns status code 200 and json {"success": True, "drinks": drink}
@@ -85,36 +84,32 @@ def create_app(test_config=None):
     @app.route('/drinks', methods=['POST'])
     @requires_auth('post:drinks')
     def post_drinks(jwt):
-        #get request from the client
+        # get request from the client
         body = request.get_json()
 
-        #get info from the body and if nothing there set it to None
+        # get info from the body and if nothing there set it to None
         new_title = body.get('title', None)
         new_recipe = body.get('recipe', None)
         print(new_recipe)
 
-
         try:
-
 
             if isinstance(new_recipe, dict):
                 new_recipe = [new_recipe]
 
-
-            #sql can't store objects so you have to dump json with
-            #for recipe so it will convert to a string which json can store
-            drink = Drink(title = new_title, recipe = json.dumps(new_recipe))
+            # sql can't store objects so you have to dump json with
+            # for recipe so it will convert to a string which json can store
+            drink = Drink(title=new_title, recipe=json.dumps(new_recipe))
 
             drink.insert()
 
             return jsonify({
-            "success": True,
-            "drinks": [drink.long()]
+                "success": True,
+                "drinks": [drink.long()]
             })
 
-        except:
+        except BaseException:
             abort(400)
-
 
     '''
     @TODO implement endpoint
@@ -124,8 +119,9 @@ def create_app(test_config=None):
             it should update the corresponding row for <id>
             it should require the 'patch:drinks' permission
             it should contain the drink.long() data representation
-        returns status code 200 and json {"success": True, "drinks": drink} where drink an array containing only the updated drink
-            or appropriate status code indicating reason for failure
+        returns status code 200 and json {"success": True, "drinks": drink}
+        where drink an array containing only the updated drink
+        or appropriate status code indicating reason for failure
     '''
 
     @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
@@ -134,16 +130,16 @@ def create_app(test_config=None):
         try:
             drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
 
-            #check if drink even exists
+            # check if drink even exists
             if drink is None:
                 abort(404)
 
-            #get payload for update
+            # get payload for update
             body = request.get_json()
 
-            #see what's being updated and change value
+            # see what's being updated and change value
             if "title" in body:
-                #get info from the body and if nothing there set it to None
+                # get info from the body and if nothing there set it to None
                 new_title = body.get('title', None)
 
                 drink.title = new_title
@@ -155,11 +151,11 @@ def create_app(test_config=None):
             drink.update()
 
             return jsonify({
-            "success": True,
-            "drinks": [drink.long()]
+                "success": True,
+                "drinks": [drink.long()]
             })
 
-        except:
+        except BaseException:
             abort(404)
 
     '''
@@ -169,34 +165,33 @@ def create_app(test_config=None):
             it should respond with a 404 error if <id> is not found
             it should delete the corresponding row for <id>
             it should require the 'delete:drinks' permission
-        returns status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
-            or appropriate status code indicating reason for failure
+        returns status code 200 and json {"success": True, "delete": id}
+        where id is the id of the deleted record
+        or appropriate status code indicating reason for failure
     '''
 
     @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
     @requires_auth('delete:drinks')
-    def delete_drink(jwt,drink_id):
+    def delete_drink(jwt, drink_id):
         try:
             drink = Drink.query.filter(Drink.id == drink_id).one_or_none()
 
             if drink is None:
                 abort(404)
 
-            #delete question from db
+            # delete question from db
             drink.delete()
 
             return jsonify({
-            "success": True,
-            "delete": drink_id
+                "success": True,
+                "delete": drink_id
             })
 
-        except:
+        except BaseException:
 
             abort(404)
 
-
-
-    ## Error Handling
+    # Error Handling
     '''
     Example error handling for unprocessable entity
     '''
@@ -253,6 +248,7 @@ def create_app(test_config=None):
         }), error.status_code
 
     return app
+
 
 app = create_app()
 

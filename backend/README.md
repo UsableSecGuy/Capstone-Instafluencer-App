@@ -8,7 +8,7 @@
 
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python).
 
-#### Virtual Enviornment
+#### Virtual Environment
 
 We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
 
@@ -57,7 +57,7 @@ The `--reload` flag will detect file changes and restart the server automaticall
 
 ## Running The Server (on Heroku)
 
-The application is live on Heroku. Point your custom cURL or Postman requests [here](https://instafluencer.herokuapp.com/).
+The application is live on Heroku. Point your custom cURL or Postman requests [https://instafluencer.herokuapp.com/](https://instafluencer.herokuapp.com/).
 
 
 ## API Endpoints

@@ -1,6 +1,6 @@
-# Instafluencer App
+# Instafluencer App: Full Stack Nano - Capstone Project
 
-## Full Stack Nano - Capstone Project
+## About
 
 Influencer Marketing has become a growing part of many marketing programs. The goal is to find someone with a decent-sized, highly engaged following on various social media platforms to share your product with their audience. The larger the following and higher the engagement, the more influencers will charge. Smaller businesses often have limited funds and focus on leveraging nano-influencers (1,000-10,000 followers). Smaller audiences can often mean higher engagement rates.
 
@@ -17,7 +17,7 @@ The Instafluencer application:
 
 ## About the Stack
 
-There is a full backend (due to time, a frontend will be added at a later date). It is designed with some key functional areas:
+There is a full backend but a frontend was not required for this assignment (frontend may be added later). It is designed with some key functional areas:
 
 ### Backend
 
