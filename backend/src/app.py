@@ -22,29 +22,6 @@ def create_app(test_config=None):
     # db_drop_and_create_all()
 
     # ROUTES
-    '''
-    @TODO implement endpoint
-        GET /drinks
-            it should be a public endpoint
-            it should contain only the drink.short() data representation
-        returns status code 200 and json {"success": True, "drinks": drinks}
-        where drinks is the list of drinks
-        or appropriate status code indicating reason for failure
-    '''
-    @app.route('/saved-')
-    def get_drinks():
-        try:
-
-            all_drinks = Drink.query.order_by('id').all()
-
-            formatted_drinks = [drink.short() for drink in all_drinks]
-
-            return jsonify({
-                'success': True,
-                'drinks': formatted_drinks
-            })
-        except BaseException:
-            abort(404)
 
     '''
     @TODO implement endpoint
@@ -68,6 +45,71 @@ def create_app(test_config=None):
                 'success': True,
                 'drinks': formatted_drinks
             })
+        except BaseException:
+            abort(404)
+
+    '''
+        POST /insta-fluencers/search
+            it search instafluencer table by hashtag
+            it should not require any permission to use
+        returns status code 200 and json
+        {
+            'success': True,
+            'fluencers': selection,
+            'total_fluencers': len(selection),
+            'search_term': search_term
+        }
+    '''
+
+    @app.route('/insta-fluencers/search', methods=['POST'])
+    def search_insta_fluencers():
+
+        # get request from the client
+        body = request.get_json()
+
+        # get info from the body and if nothing there set it to None
+        search_term = body.get('search_term', None)
+
+        print(search_term)
+
+        # pass to helper function
+        search_results = search_social(search_term)
+
+        return search_results.data
+
+    '''
+    Helper function that takes in a search term and returns a list
+    of influencers, total number in the list, the search_term, and success code
+    '''
+    def search_social(search_term):
+
+        try:
+
+            # query Insta db for search_term and arrange by highest engagement
+            selection = Instafluencer.query.filter(
+                Instafluencer.hashtags.
+                ilike('%{}%'.format(search_term))). \
+                order_by(Instafluencer.engagement.desc())
+
+            '''{} are placeholders for python format() in strings.
+            Using {} as placeholders lets you insert all arguments in the
+            following () w/o having to worry about indexes numbering or naming
+            it auto fills each placeholder in the order the args appear
+            '''
+
+            if(len(selection) != 0):
+
+                return jsonify({
+                    'success': True,
+                    'fluencers': selection,
+                    'total_fluencers': len(selection),
+                    'search_term': search_term
+                })
+
+            else:
+
+                abort(404)
+
         except BaseException:
             abort(404)
 
