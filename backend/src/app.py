@@ -1,5 +1,6 @@
 import os
 from sqlalchemy import exc
+import base64
 import json
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
@@ -54,7 +55,8 @@ def create_app(test_config=None):
 
     '''
         Helper function that takes in a search term and returns a list
-        of influencers, total number in the list, the search_term, and success code
+        of influencers, total number in the list, the search_term, and success
+        code
     '''
     def search_social(search_term):
 
@@ -163,6 +165,39 @@ def create_app(test_config=None):
             abort(404)
 
     '''
+        GET /saved
+            it should respond with a 404 error if <insta_id> is not found
+            it should update the corresponding row for <insta_id>
+            it should require the 'update:influencer' permission
+        returns status code 200 and json
+        {"success": True, "instafluencer": instafluencer}
+        where drink an array containing only the updated drink
+        or appropriate status code indicating reason for failure
+    '''
+
+    @app.route('/saved-insta-fluencers')
+    @requires_auth('view:saved')
+    def get_saved(jwt):
+        try:
+
+            string2 = jwt
+            decoded_base64 = base64.b64decode(str(string2).split(".")[1]+"==")
+            user_name = json.loads(decoded_base64.decode("UTF-8"))['sub']
+            print(user_name)
+
+            saved_list = SavedInsta.query. \
+                filter(SavedInsta.searcher_username == user_name). \
+                order_by('id').all()
+
+            return jsonify({
+                'success': True,
+                'saved_list': saved_list
+            })
+
+        except BaseException:
+            abort(404)
+
+    '''
         POST /insta-fluencers
             it should create a new row in the instafluencer table
             it should require the 'add:influencer' permission
@@ -230,13 +265,13 @@ def create_app(test_config=None):
         body = request.get_json()
 
         # get info from the body and if nothing there set it to None
-        new_username = body.get('username', None)
+        new_username = body.get('searcher_username', None)
         new_insta_fluencer_id = body.get('insta_fluencer_id', None)
 
         try:
 
             saved_insta = SavedInsta(
-                username=new_username,
+                searcher_username=new_username,
                 insta_fluencer_id=new_insta_fluencer_id)
 
             saved_insta.insert()

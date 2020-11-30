@@ -1,4 +1,5 @@
-from sqlalchemy import Column, ARRAY
+from sqlalchemy import Column, ARRAY, DateTime
+import datetime
 # String, Integer, Float, ARRAY, create_engine
 from flask_sqlalchemy import SQLAlchemy
 # import json
@@ -63,7 +64,7 @@ class Instafluencer(db.Model):
 
 '''
 SavedInsta
-have id, username, insta_fluencer_id, date_saved
+have id, searcher_username, insta_fluencer_id, date_saved
 '''
 
 
@@ -71,8 +72,8 @@ class SavedInsta(db.Model):
     __tablename__ = 'saved_insta'
 
     id = Column(db.Integer, primary_key=True)
-    username = Column(db.String, unique=True, nullable=False)
+    searcher_username = Column(db.String, unique=True, nullable=False)
     insta_fluencer_id = db.Column(db.Integer,
                                   db.ForeignKey('instafluencer.id'),
                                   nullable=False)
-    date_saved = Column(db.DateTime, nullable=False)
+    date_saved = Column(DateTime, default=datetime.datetime.utcnow)
