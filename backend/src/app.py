@@ -44,12 +44,18 @@ def create_app(test_config=None):
         body = request.get_json()
 
         # get info from the body and if nothing there set it to None
-        search_term = body.get('search_term', None)
+        if "search_term" in body:
+            search_term = body.get('search_term', None)
+        else:
+            abort(400)
 
         print(search_term)
 
         # pass to helper function
-        search_results = search_social(search_term)
+        if search_term:
+            search_results = search_social(search_term)
+        else:
+            abort(400)
 
         return search_results.data
 

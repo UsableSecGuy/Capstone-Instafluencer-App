@@ -6,670 +6,8 @@
 	},
 	"item": [
 		{
-			"name": "Public",
-			"item": [
-				{
-					"name": "/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c10b2972-efa8-4dc0-8a17-5095c6a1ff32",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "78a48b2a-f772-4260-a5ee-98254106b7c9",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"joe.doe@email.com\",\n    \"insta_fluencer_id\": 1,\n    \"date_saved\": \"2020-11-05\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "/saved-insta-fluencers",
-							"path": [
-								"saved-insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "e67d189a-cf0e-4803-92e0-5923b0e417e9",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"anjee_smiles\",\n    \"full_name\": \"Anjenée\",\n    \"profile_pic_link\": \"https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/s150x150/45466966_323990854861643_3648830650758201344_n.jpg?_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_ohc=6uwDtqxJfVwAX-7yU_R&oh=cd1bfb665b6331a0e3c193750ca7b3ec&oe=5FCAE768\",\n    \"profile_link\":\"https://www.instagram.com/anjee_smiles/\",\n    \"followers\": 3100,\n    \"posts_per_week\": 0.5,\n    \"engagement\": 19.1,\n    \"hashtags\": [\"college radio\", \"radio host\"]   \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/search",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "11bc0e56-1d5f-40ac-9d00-b3131634c926",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Test Response Data Type\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.be.an(\"object\");",
-									"    pm.expect(jsonData.fluencer_list).to.be.an('array');",
-									"    pm.expect(jsonData.total_number).to.be.a('number');",
-									"    pm.expect(jsonData.start_page).to.be.a('number');",
-									"    pm.expect(jsonData.end_page).to.be.a('number');",
-									"    ",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"search_term\": \"college radio\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/search",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"search"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c486bb09-bb18-4944-a1e6-3f156ee2b23f",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"engagement\": 15   \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/1",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c486bb09-bb18-4944-a1e6-3f156ee2b23f",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/1",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "da736831-ac25-485f-b1e3-f458e43c99a7",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "/saved-insta-fluencers/1",
-							"path": [
-								"saved-insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "92a03245-19c6-4ffe-bcb3-55e9cb3c3643",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "/saved-insta-fluencers",
-							"path": [
-								"saved-insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Standard",
-			"item": [
-				{
-					"name": "/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "70b941a6-4974-4e73-8d1b-408d8dcc9a90",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1a473614-1582-48d0-83ce-eb33c97f6f2f",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Test Response Data Type\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.be.an(\"object\");",
-									"    pm.expect(jsonData.id).to.be.a('number');",
-									"    ",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"joe.doe@email.com\",\n    \"insta_fluencer_id\": 1,\n    \"date_saved\": \"2020-11-05\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "/saved-insta-fluencers",
-							"path": [
-								"saved-insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a328b029-86b8-4bb8-bf17-75d2b747fb15",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"anjee_smiles\",\n    \"full_name\": \"Anjenée\",\n    \"profile_pic_link\": \"https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/s150x150/45466966_323990854861643_3648830650758201344_n.jpg?_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_ohc=6uwDtqxJfVwAX-7yU_R&oh=cd1bfb665b6331a0e3c193750ca7b3ec&oe=5FCAE768\",\n    \"profile_link\":\"https://www.instagram.com/anjee_smiles/\",\n    \"followers\": 3100,\n    \"posts_per_week\": 0.5,\n    \"enagement\": 19.1,\n    \"hashtags\": [\"college radio\", \"radio host\"]   \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/search",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "116910be-0fe8-4689-9640-f37601fea133",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Test Response Data Type\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.be.an(\"object\");",
-									"    pm.expect(jsonData.fluencer_list).to.be.an('array');",
-									"    pm.expect(jsonData.total_number).to.be.a('number');",
-									"    pm.expect(jsonData.start_page).to.be.a('number');",
-									"    pm.expect(jsonData.end_page).to.be.a('number');",
-									"    ",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"search_term\": \"college radio\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/search",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"search"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "853e8fb8-1546-4d55-aad7-4b9079ff21d8",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"engagement\": 15   \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/1",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3e042ab3-ba37-4f13-b164-4cdfd901df25",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Test Response Data Type\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.be.an(\"object\");",
-									"    pm.expect(jsonData.id).to.be.a('number');",
-									"    ",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "/saved-insta-fluencers/1",
-							"path": [
-								"saved-insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/saved-insta-fluencers",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0b7e2b50-6ad4-4b37-99ad-ec00b6574574",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Test Response Data Type\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.be.an(\"object\");",
-									"    pm.expect(jsonData.saved_fluencers).to.be.an('array');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "/saved-insta-fluencers",
-							"path": [
-								"saved-insta-fluencers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/insta-fluencers/1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7ebf2327-af60-415b-9930-17f69b655396",
-								"exec": [
-									"pm.test(\"Status code is 401\", function () {",
-									"    pm.response.to.have.status(401);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/insta-fluencers/1",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"insta-fluencers",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Premium",
 			"item": [
-				{
-					"name": "/",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "bcf4f00e-82ce-496b-9926-2473051c62f5",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "/saved-insta-fluencers",
 					"event": [
@@ -698,7 +36,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"joe.doe@email.com\",\n    \"insta_fluencer_id\": 1,\n    \"date_saved\": \"2020-11-05\"\n}",
+							"raw": "{\n    \"searcher_username\": {{premium_search_name}},\n    \"insta_fluencer_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1201,6 +539,649 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "password",
+						"value": "{{Premium Account}}",
+						"type": "string"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ1OTY0MjU1Njk4MzAzOTcxNTIiLCJhdWQiOlsiaW5zdGFmbHVlbmNlciIsImh0dHBzOi8vZnNuZC1kZW1vLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MDY3MjA0ODYsImV4cCI6MTYwNjcyNzY4NiwiYXpwIjoiQ0NKa3Jjb0IwcnplNjczVFBFSVBFaHdEVXpvdDlSaGsiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiYWRkOmluZmx1ZW5jZXIiLCJkZWxldGU6aW5mbHVlbmNlciIsInNhdmU6aW5mbHVlbmNlciIsInVuc2F2ZTppbmZsdWVuY2VyIiwidXBkYXRlOmluZmx1ZW5jZXIiLCJ2aWV3OnNhdmVkIl19.RPkCDOIuLhbCcHl9VUzfS_sHDrDlwBnWINLgOt1vb9G4P2nX6XKDgJp9qrUsTZFBlKtVdb6V1Rz297A7H8Tpr36GN1gkjfqUdJ4D8nhaZYXKC_dZqtLsjoAAfpKgJBse134BDs3NocvgFd-wEAJN26Egwk5S9I5oeGGCOQptL61XAGY3qsg5HrFmaf2HR1wPosvC96xwpRnnMoV8orFpQgoNEuecbzFP9mL35aJT8XmIkL3SsARZfP6nX-XQFIHi0azNstT1F4upoUZWPm-11EClQW3hn2_-piAL0epT2BkIE0WW1i-2rCVF-Os3fBjjIYNHSpVuaWsgQHyGeNrROw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cda9f2e9-e3e0-4726-87d6-e921789455be",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "05a020fa-d6e6-424a-bae9-76d2c533ab23",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Standard",
+			"item": [
+				{
+					"name": "/saved-insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a473614-1582-48d0-83ce-eb33c97f6f2f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Test Response Data Type\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an(\"object\");",
+									"    pm.expect(jsonData.id).to.be.a('number');",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"searcher_username\": {{standard_searcher_name}},\n    \"insta_fluencer_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/saved-insta-fluencers",
+							"path": [
+								"saved-insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a328b029-86b8-4bb8-bf17-75d2b747fb15",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"anjee_smiles\",\n    \"full_name\": \"Anjenée\",\n    \"profile_pic_link\": \"https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/s150x150/45466966_323990854861643_3648830650758201344_n.jpg?_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_ohc=6uwDtqxJfVwAX-7yU_R&oh=cd1bfb665b6331a0e3c193750ca7b3ec&oe=5FCAE768\",\n    \"profile_link\":\"https://www.instagram.com/anjee_smiles/\",\n    \"followers\": 3100,\n    \"posts_per_week\": 0.5,\n    \"enagement\": 19.1,\n    \"hashtags\": [\"college radio\", \"radio host\"]   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "116910be-0fe8-4689-9640-f37601fea133",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Test Response Data Type\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an(\"object\");",
+									"    pm.expect(jsonData.fluencer_list).to.be.an('array');",
+									"    pm.expect(jsonData.total_number).to.be.a('number');",
+									"    pm.expect(jsonData.start_page).to.be.a('number');",
+									"    pm.expect(jsonData.end_page).to.be.a('number');",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"search_term\": \"college radio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/search",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "853e8fb8-1546-4d55-aad7-4b9079ff21d8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"engagement\": 15   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/saved-insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e042ab3-ba37-4f13-b164-4cdfd901df25",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Test Response Data Type\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an(\"object\");",
+									"    pm.expect(jsonData.id).to.be.a('number');",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "/saved-insta-fluencers/1",
+							"path": [
+								"saved-insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/saved-insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b7e2b50-6ad4-4b37-99ad-ec00b6574574",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Test Response Data Type\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an(\"object\");",
+									"    pm.expect(jsonData.saved_fluencers).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/saved-insta-fluencers",
+							"path": [
+								"saved-insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ebf2327-af60-415b-9930-17f69b655396",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "password",
+						"value": "{{Standard}}",
+						"type": "string"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTE1MTEzMDE0NDk1NjI1NDIxMDYiLCJhdWQiOlsiaW5zdGFmbHVlbmNlciIsImh0dHBzOi8vZnNuZC1kZW1vLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2MDY3MjA2ODAsImV4cCI6MTYwNjcyNzg4MCwiYXpwIjoiQ0NKa3Jjb0IwcnplNjczVFBFSVBFaHdEVXpvdDlSaGsiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsic2F2ZTppbmZsdWVuY2VyIiwidW5zYXZlOmluZmx1ZW5jZXIiLCJ1cGRhdGU6aW5mbHVlbmNlciIsInZpZXc6c2F2ZWQiXX0.d-fem3A7WQ68VtZ6urOnjQSfXwYV37gRbKUimzIdLlk6sIDaIqHMsfFcX-cUeULTbyiuaT5ah35lKrNLNlXkUlqgBROWOB6MTutoyZWwnHfOJkeLHyN7Y-SVJlo6c6s6ZHlIgAC-JWKmS43gKpBAuS1TJh8Ej1P8BLjQWMz7ztB3AugsyZ7QxLyUGdLrdewJsz3UoYLiZAcefirvcsspDC6rO6lmCiwmmxB9BcHqNFzkiFlyhtSM34VHh5Xo4Wkcm94DhrPdNvHs0FLE9oZf3MJzwzxWp9Ad-O2jUozBS8bG7xslPWnohdgEc6c6a1R28H6CCrYjSqYuyCNlbdSVJA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "13cd6344-32c4-4f60-b349-689dba752768",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0eb0758-4fa3-4bad-8884-1b73595b8526",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "/insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e67d189a-cf0e-4803-92e0-5923b0e417e9",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"anjee_smiles\",\n    \"full_name\": \"Anjenée\",\n    \"profile_pic_link\": \"https://scontent-atl3-2.cdninstagram.com/v/t51.2885-19/s150x150/45466966_323990854861643_3648830650758201344_n.jpg?_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_ohc=6uwDtqxJfVwAX-7yU_R&oh=cd1bfb665b6331a0e3c193750ca7b3ec&oe=5FCAE768\",\n    \"profile_link\":\"https://www.instagram.com/anjee_smiles/\",\n    \"followers\": 3100,\n    \"posts_per_week\": 0.5,\n    \"engagement\": 19.1,\n    \"hashtags\": [\"college radio\", \"radio host\"]   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/saved-insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78a48b2a-f772-4260-a5ee-98254106b7c9",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"insta_fluencer_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/saved-insta-fluencers",
+							"path": [
+								"saved-insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11bc0e56-1d5f-40ac-9d00-b3131634c926",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Test Response Data Type\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an(\"object\");",
+									"    pm.expect(jsonData.fluencer_list).to.be.an('array');",
+									"    pm.expect(jsonData.total_number).to.be.a('number');",
+									"    pm.expect(jsonData.start_page).to.be.a('number');",
+									"    pm.expect(jsonData.end_page).to.be.a('number');",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"search_term\": \"college radio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/search",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c486bb09-bb18-4944-a1e6-3f156ee2b23f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"engagement\": 15   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c486bb09-bb18-4944-a1e6-3f156ee2b23f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/insta-fluencers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/saved-insta-fluencers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da736831-ac25-485f-b1e3-f458e43c99a7",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "/saved-insta-fluencers/1",
+							"path": [
+								"saved-insta-fluencers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/saved-insta-fluencers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "92a03245-19c6-4ffe-bcb3-55e9cb3c3643",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/saved-insta-fluencers",
+							"path": [
+								"saved-insta-fluencers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
@@ -1228,9 +1209,29 @@
 	],
 	"variable": [
 		{
-			"id": "b24850df-c7d3-4938-a4fd-78b007b64865",
+			"id": "1673b167-57f8-4961-89f6-e72b5635cf23",
 			"key": "host",
 			"value": "localhost:5000"
+		},
+		{
+			"id": "2b069ea8-a261-48ee-9304-c1b67a0656cd",
+			"key": "Premium Account",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3Vi..."
+		},
+		{
+			"id": "b0ef05a8-9f26-4941-8e88-706fc452d352",
+			"key": "Standard",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3Vi..."
+		},
+		{
+			"id": "715c9ea7-bc64-44c5-a627-c44b48c0340c",
+			"key": "standard_searcher_name",
+			"value": "\"google-oauth2|111511301449562542106\""
+		},
+		{
+			"id": "b09ab4f9-c08e-414b-be9a-9161dc830006",
+			"key": "premium_search_name",
+			"value": "\"google-oauth2|114596425569830397152\""
 		}
 	],
 	"protocolProfileBehavior": {}

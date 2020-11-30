@@ -1,5 +1,15 @@
 # Instafluencer Backend
 
+## About
+
+The goal of the Instafluencer App is to allow marketers to search for Instagram nano-influencers with high engagement raters. Marketers can use the Instafluencer App to search Instagram bios for hashtags related to their campaign. 
+
+The Instafluencer application endpoints:
+
+1. Searches its own database for Instafluencers  
+2. Save lists of Instafluencers.
+3. Present Instafluencers in order of highest engagement.
+
 ## Getting Started
 
 ### Installing Dependencies
@@ -76,18 +86,13 @@ The application is live on Heroku. Point your custom cURL or Postman requests [h
         - Enable RBAC
         - Enable Add Permissions in the Access Token
 5. Create new API permissions:
-    - `search:influencers`
-    - `view:influencers`
     - `update:influencer`
     - `save:influencer`
     - `unsave:influencer`
     - `view:saved`
     - `add:influencer`
     - `delete:influencer`
-6. Create new roles for Standard:
-    - Public (functions anyone can do; do not need a role/permission defined)
-        - can `search:influencers`
-        - can `view:influencers`
+6. Create new roles (Standard, Premium):
     - Standard
         - can `update:influencer`
         - can `save:influencer`
@@ -97,16 +102,20 @@ The application is live on Heroku. Point your custom cURL or Postman requests [h
         - can perform all restricted actions of the Standard role
         - can `add:influencer`
         - can `delete:influencer`
+    - Public (functions anyone can do; do not need a role/permission defined)
+        - can `search:influencers`
+        - can `view:influencers`
 
 7. Test your endpoints with [Postman](https://getpostman.com).
     - Register 2 users - assign the Standard role to one and Premium role to the other.
     - Sign into each account and make sure to capture the JWT.
     - Import the postman collection `.backend/udacity-fsnd-capstone-instafluencer.postman_collection.json`
     - Right-clicking the collection folder for Standard and Premium, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
-    - Run the collection and correct any errors.
-    - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
+    - Run the collection.
 
-###### Note: For the Udacity Fullstack Nanodegree purposes, the jwt tokens will be included in the postman collection until the submission has been graded.
+###### Note 1: For the Udacity Fullstack Nanodegree purposes, the jwt tokens will be included in the postman collection until the submission has been graded.
+
+###### Note 2: For the Udacity Fullstack Nanodegree purposes, PREMUSER and STANDUSER are export variables included in the setup bash file with corresponding jwt tokens for testing using the unittest library. Modifications will be following the assignment being graded.
 
 ### Implement The Server
 
