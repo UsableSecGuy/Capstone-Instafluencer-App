@@ -61,6 +61,17 @@ class Instafluencer(db.Model):
     saved_instafluencers = db.relationship('Saved', backref='influencer',
                                                             lazy=True)
 
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 
 '''
 SavedInsta
@@ -77,3 +88,14 @@ class SavedInsta(db.Model):
                                   db.ForeignKey('instafluencer.id'),
                                   nullable=False)
     date_saved = Column(DateTime, default=datetime.datetime.utcnow)
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

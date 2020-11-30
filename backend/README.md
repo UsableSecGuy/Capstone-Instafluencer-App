@@ -40,10 +40,13 @@ This will install all of the required packages we selected within the `requireme
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
-## Database Setup
-With Postgres running, restore a database using the instafluencer.psql file provided. From the backend folder in terminal run:
-```bash
-psql instafluencer < instafluencer.psql
+## DATA MODELING:
+#### models.py
+The schema for the database and helper methods to simplify API behavior are in models.py:
+- There are two tables created: Instafluencer, SavedInsta
+- The Instafluencer table is used store specific information of instagram influencers.
+- The SavedInsta table stores the end user's list of saved influencers.
+
 ```
 
 
