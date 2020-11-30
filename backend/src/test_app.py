@@ -157,6 +157,37 @@ class InstafluencerTestCase(unittest.TestCase):
             self.assertEqual(res.status_code, 200)
             self.assertEqual(data['success'], True)
 
+        """Scenario: Test Get SavedInsta Premium Account Success"""
+        def test_e_get_savedInsta_by_premium_account(self):
+
+            res = self.client().get('/saved-insta-fluencers',
+                                    headers={"Authorization":
+                                             self.premium})
+            data = res.json
+
+            self.assertEqual(res.status_code, 200)
+            self.assertEqual(data['success'], True)
+
+        """Scenario: Test Get SavedInsta Standard Account Failed"""
+        def test_e_get_savedInsta_by_standard_account(self):
+
+            res = self.client().get('/saved-insta-fluencers',
+                                    headers={"Authorization":
+                                             self.standard})
+            data = res.json
+
+            self.assertEqual(res.status_code, 200)
+            self.assertEqual(data['success'], True)
+
+        """Scenario: Test Get SavedInsta No Account Failed"""
+        def test_e_get_savedInsta_by_no_account(self):
+
+            res = self.client().get('/saved-insta-fluencers')
+            data = res.json
+
+            self.assertEqual(res.status_code, 200)
+            self.assertEqual(data['success'], True)
+
         """Scenario: Test Search Instafluencers - Success """
         def test_a_search_instafluencers_by_anyone(self):
 
