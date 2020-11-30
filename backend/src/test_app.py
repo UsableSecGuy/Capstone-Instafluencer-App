@@ -4,7 +4,7 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 from flask import jsonify
 
-from flaskr import create_app
+from app import create_app
 from models import setup_db, Instafluencer, SavedInsta
 
 """
@@ -83,7 +83,7 @@ class InstafluencerTestCase(unittest.TestCase):
                                  json=self.new_instafluencer,
                                  headers=[
                                      ('Content-Type', 'application/json'),
-                                     ('Authorization', self.standard)
+                                     ('Authorization', 'Bearer '+self.standard)
                                  ])
         data = res.json
 
@@ -97,7 +97,7 @@ class InstafluencerTestCase(unittest.TestCase):
                                  json=self.new_instafluencer,
                                  headers=[
                                      ('Content-Type', 'application/json'),
-                                     ('Authorization', self.premium)
+                                     ('Authorization', 'Bearer '+self.premium)
                                  ])
         data = res.json
 
@@ -132,7 +132,8 @@ class InstafluencerTestCase(unittest.TestCase):
                                         },
                                      headers=[
                                          ('Content-Type', 'application/json'),
-                                         ('Authorization', self.standard)
+                                         ('Authorization',
+                                          'Bearer '+self.standard)
                                      ])
             data = res.json
 
@@ -150,7 +151,8 @@ class InstafluencerTestCase(unittest.TestCase):
                                         },
                                      headers=[
                                          ('Content-Type', 'application/json'),
-                                         ('Authorization', self.premium)
+                                         ('Authorization',
+                                          'Bearer '+self.premium)
                                      ])
             data = res.json
 
@@ -221,7 +223,7 @@ class InstafluencerTestCase(unittest.TestCase):
                                   json={"engagement": 15},
                                   headers=[
                                      ('Content-Type', 'application/json'),
-                                     ('Authorization', self.premium)
+                                     ('Authorization', 'Bearer '+self.premium)
                                      ])
         data = res.json
 
@@ -235,7 +237,7 @@ class InstafluencerTestCase(unittest.TestCase):
                                   json={"engagement": 15},
                                   headers=[
                                      ('Content-Type', 'application/json'),
-                                     ('Authorization', self.premium)
+                                     ('Authorization', 'Bearer '+self.premium)
                                      ])
         data = res.json
 
@@ -273,7 +275,8 @@ class InstafluencerTestCase(unittest.TestCase):
         res = self.client().delete('/insta-fluencers/1',
                                    headers=[
                                         ('Content-Type', 'application/json'),
-                                        ('Authorization', self.premium)
+                                        ('Authorization',
+                                         'Bearer '+self.premium)
                                         ])
         data = res.json
 
@@ -286,7 +289,8 @@ class InstafluencerTestCase(unittest.TestCase):
         res = self.client().delete('/insta-fluencers/1000',
                                    headers=[
                                         ('Content-Type', 'application/json'),
-                                        ('Authorization', self.premium)
+                                        ('Authorization',
+                                         'Bearer '+self.premium)
                                         ])
         data = res.json
 
@@ -311,7 +315,8 @@ class InstafluencerTestCase(unittest.TestCase):
         res = self.client().delete('/saved-insta-fluencers/1',
                                    headers=[
                                         ('Content-Type', 'application/json'),
-                                        ('Authorization', self.premium)
+                                        ('Authorization',
+                                         'Bearer '+self.premium)
                                         ])
         data = res.json
 
@@ -324,7 +329,8 @@ class InstafluencerTestCase(unittest.TestCase):
         res = self.client().delete('/saved-insta-fluencers/1000',
                                    headers=[
                                         ('Content-Type', 'application/json'),
-                                        ('Authorization', self.premium)
+                                        ('Authorization',
+                                         'Bearer '+self.premium)
                                         ])
         data = res.json
 
@@ -337,7 +343,8 @@ class InstafluencerTestCase(unittest.TestCase):
         res = self.client().delete('/saved-insta-fluencers/1',
                                    headers=[
                                         ('Content-Type', 'application/json'),
-                                        ('Authorization', self.standard)
+                                        ('Authorization',
+                                         'Bearer '+self.standard)
                                         ])
         data = res.json
 
