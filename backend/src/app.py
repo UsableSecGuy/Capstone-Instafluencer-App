@@ -388,7 +388,7 @@ def create_app(test_config=None):
         Error handler for 400
     '''
     @app.errorhandler(400)
-    def internal_server_error(error):
+    def bad_request_error(error):
         return jsonify({
             "success": False,
             "error": 400,
