@@ -22,11 +22,11 @@ class InstafluencerTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.standard = os.environ['STANDARD']
-        self.premium = os.environ['PREMIUM']
-        self.database_name = os.environ['TEST_DATABASE_NAME']
+        self.standard = os.environ.get('STANDARD')
+        self.premium = os.environ.get('PREMIUM')
+        self.database_name = os.environ.get('TEST_DATABASE_NAME')
         self.database_path = "postgres://{}/{}". \
-            format(os.environ['TEST_PORT'], self.database_name)
+            format(os.environ.get('TEST_PORT'), self.database_name)
 
         # connect test app to test db
         setup_db(self.app, self.database_path)
@@ -164,7 +164,7 @@ class InstafluencerTestCase(unittest.TestCase):
 
             res = self.client().get('/saved-insta-fluencers',
                                     headers={"Authorization":
-                                             self.premium})
+                                             'Bearer '+self.premium})
             data = res.json
 
             self.assertEqual(res.status_code, 200)
@@ -347,6 +347,8 @@ class InstafluencerTestCase(unittest.TestCase):
                                          'Bearer '+self.standard)
                                         ])
         data = res.json
+
+        # print(self.standard)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
