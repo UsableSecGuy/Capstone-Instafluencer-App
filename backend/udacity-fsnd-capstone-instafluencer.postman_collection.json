@@ -48,7 +48,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /saved-insta-fluencers\n            it should create a new row in the savedInsta table\n            it should require the 'save:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": saved_insta.id}\n        where saved.id is the id of the newly added savedInsta entry\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -137,7 +138,8 @@
 								"insta-fluencers",
 								"search"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers/search\n    it searches instafluencer table by hashtag\n    it should not require any permission to use\nreturns status code 200 and json\n{\n    'success': True,\n    'fluencers': selection,\n    'total_fluencers': len(selection),\n    'search_term': search_term\n}\n"
 					},
 					"response": []
 				},
@@ -184,7 +186,8 @@
 							"path": [
 								"insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers\n            it should create a new row in the instafluencer table\n            it should require the 'add:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": instafluencer.id}\n        where instafluencer.id is the id of the newly added instafluencer\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -224,7 +227,8 @@
 							"path": [
 								"insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers\n            it should create a new row in the instafluencer table\n            it should require the 'add:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": instafluencer.id}\n        where instafluencer.id is the id of the newly added instafluencer\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -264,7 +268,8 @@
 							"path": [
 								"insta-fluencers"
 							]
-						}
+						},
+						"description": "OPT is not allowed and should return an error. "
 					},
 					"response": []
 				},
@@ -305,7 +310,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "PATCH /insta-fluencers/<insta_id>\n            where <insta_id> is the existing insta_fluencer_id\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -346,7 +352,8 @@
 								"insta-fluencers",
 								"10000"
 							]
-						}
+						},
+						"description": "PATCH /insta-fluencers/<insta_id>\n            where <insta_id> is the existing insta_fluencer_id\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -382,7 +389,8 @@
 								"saved-insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /saved-insta-fluencers/<saved_id>\n            where <saved_id> is the existing saved model id\n            it should respond with a 404 error if <saved_id> is not found\n            it should delete the corresponding row for <saved_id>\n            it should require the 'unsave:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": saved_id}\n        where saved_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -411,7 +419,8 @@
 								"saved-insta-fluencers",
 								"10000"
 							]
-						}
+						},
+						"description": "DELETE /saved-insta-fluencers/<saved_id>\n            where <saved_id> is the existing saved model id\n            it should respond with a 404 error if <saved_id> is not found\n            it should delete the corresponding row for <saved_id>\n            it should require the 'unsave:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": saved_id}\n        where saved_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -445,7 +454,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "GET /saved-insta-fluencers\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -493,7 +503,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /insta-fluencers/<insta_id>\n            where <insta_id> is the existing instafluencer model id\n            it should respond with a 404 error if <insta_id> is not found\n            it should delete the corresponding row for <insta_id>\n            it should require the 'delete:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": insta_id}\n        where insta_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -534,7 +545,8 @@
 								"insta-fluencers",
 								"10000"
 							]
-						}
+						},
+						"description": "DELETE /insta-fluencers/<insta_id>\n            where <insta_id> is the existing instafluencer model id\n            it should respond with a 404 error if <insta_id> is not found\n            it should delete the corresponding row for <insta_id>\n            it should require the 'delete:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": insta_id}\n        where insta_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				}
@@ -622,7 +634,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /saved-insta-fluencers\n            it should create a new row in the savedInsta table\n            it should require the 'save:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": saved_insta.id}\n        where saved.id is the id of the newly added savedInsta entry\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -662,7 +675,8 @@
 							"path": [
 								"insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers\n            it should create a new row in the instafluencer table\n            it should require the 'add:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": instafluencer.id}\n        where instafluencer.id is the id of the newly added instafluencer\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -714,7 +728,8 @@
 								"insta-fluencers",
 								"search"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers/search\n    it searches instafluencer table by hashtag\n    it should not require any permission to use\nreturns status code 200 and json\n{\n    'success': True,\n    'fluencers': selection,\n    'total_fluencers': len(selection),\n    'search_term': search_term\n}\n"
 					},
 					"response": []
 				},
@@ -755,7 +770,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "PATCH /insta-fluencers/<insta_id>\n            where <insta_id> is the existing insta_fluencer_id\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -791,7 +807,8 @@
 								"saved-insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /saved-insta-fluencers/<saved_id>\n            where <saved_id> is the existing saved model id\n            it should respond with a 404 error if <saved_id> is not found\n            it should delete the corresponding row for <saved_id>\n            it should require the 'unsave:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": saved_id}\n        where saved_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -825,7 +842,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "GET /saved-insta-fluencers\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -866,7 +884,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /insta-fluencers/<insta_id>\n            where <insta_id> is the existing instafluencer model id\n            it should respond with a 404 error if <insta_id> is not found\n            it should delete the corresponding row for <insta_id>\n            it should require the 'delete:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": insta_id}\n        where insta_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				}
@@ -949,7 +968,8 @@
 							"path": [
 								"insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /insta-fluencers\n            it should create a new row in the instafluencer table\n            it should require the 'add:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": instafluencer.id}\n        where instafluencer.id is the id of the newly added instafluencer\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -986,7 +1006,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "POST /saved-insta-fluencers\n            it should create a new row in the savedInsta table\n            it should require the 'save:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"id\": saved_insta.id}\n        where saved.id is the id of the newly added savedInsta entry\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -1079,7 +1100,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "PATCH /insta-fluencers/<insta_id>\n            where <insta_id> is the existing insta_fluencer_id\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				},
@@ -1120,7 +1142,8 @@
 								"insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /insta-fluencers/<insta_id>\n            where <insta_id> is the existing instafluencer model id\n            it should respond with a 404 error if <insta_id> is not found\n            it should delete the corresponding row for <insta_id>\n            it should require the 'delete:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": insta_id}\n        where insta_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -1149,7 +1172,8 @@
 								"saved-insta-fluencers",
 								"1"
 							]
-						}
+						},
+						"description": "DELETE /saved-insta-fluencers/<saved_id>\n            where <saved_id> is the existing saved model id\n            it should respond with a 404 error if <saved_id> is not found\n            it should delete the corresponding row for <saved_id>\n            it should require the 'unsave:influencer' permission\n        returns status code 200 and json {\"success\": True, \"delete\": saved_id}\n        where saved_id is the id of the deleted record\n            or appropriate status code indicating reason for failure"
 					},
 					"response": []
 				},
@@ -1177,7 +1201,8 @@
 							"path": [
 								"saved-insta-fluencers"
 							]
-						}
+						},
+						"description": "GET /saved-insta-fluencers\n            it should respond with a 404 error if <insta_id> is not found\n            it should update the corresponding row for <insta_id>\n            it should require the 'update:influencer' permission\n        returns status code 200 and json\n        {\"success\": True, \"instafluencer\": instafluencer}\n       "
 					},
 					"response": []
 				}
@@ -1209,27 +1234,27 @@
 	],
 	"variable": [
 		{
-			"id": "1673b167-57f8-4961-89f6-e72b5635cf23",
+			"id": "919e1726-21ea-4043-9e72-549748c51dd1",
 			"key": "host",
 			"value": "localhost:5000"
 		},
 		{
-			"id": "2b069ea8-a261-48ee-9304-c1b67a0656cd",
+			"id": "f9c65e90-2916-454e-9e32-ddbb98ca3e0d",
 			"key": "Premium Account",
 			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3Vi..."
 		},
 		{
-			"id": "b0ef05a8-9f26-4941-8e88-706fc452d352",
+			"id": "91f66a69-6af8-445c-93d4-c2d2d7c11cff",
 			"key": "Standard",
 			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhkaEdaQU1va1ZPdXJWeXVkUUkyNSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtZGVtby51cy5hdXRoMC5jb20vIiwic3Vi..."
 		},
 		{
-			"id": "715c9ea7-bc64-44c5-a627-c44b48c0340c",
+			"id": "9b81b425-56ad-46cd-8938-2d127ce1e832",
 			"key": "standard_searcher_name",
 			"value": "\"google-oauth2|111511301449562542106\""
 		},
 		{
-			"id": "b09ab4f9-c08e-414b-be9a-9161dc830006",
+			"id": "e19cc627-9127-4f47-b7bb-f9e26b87e8e1",
 			"key": "premium_search_name",
 			"value": "\"google-oauth2|114596425569830397152\""
 		}

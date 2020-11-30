@@ -2,7 +2,7 @@
 
 ## About
 
-The goal of the Instafluencer App is to allow marketers to search for Instagram nano-influencers with high engagement raters. Marketers can use the Instafluencer App to search Instagram bios for hashtags related to their campaign. 
+The goal of the Instafluencer App is to allow marketers to search for Instagram nano-influencers with high engagement raters. Marketers can use the Instafluencer App to search Instagram bios for hashtags related to their campaign.
 
 The Instafluencer application endpoints:
 
@@ -36,7 +36,7 @@ This will install all of the required packages we selected within the `requireme
 
 - [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
+- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the postgres database.
 
 - [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
 
@@ -74,7 +74,7 @@ The application is live on Heroku. Point your custom cURL or Postman requests [h
 
 ### View Sample Requests and Responses
 
-[API Documentation via Postman](https://python-jose.readthedocs.io/en/latest/)
+[API Documentation via Postman](https://documenter.getpostman.com/view/13069901/TVmJizAo)
 
 ### Setup Auth0 For Local Testing
 

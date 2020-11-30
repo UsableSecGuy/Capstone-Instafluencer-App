@@ -106,8 +106,6 @@ def create_app(test_config=None):
             it should require the 'update:influencer' permission
         returns status code 200 and json
         {"success": True, "instafluencer": instafluencer}
-        where drink an array containing only the updated drink
-        or appropriate status code indicating reason for failure
     '''
 
     @app.route('/insta-fluencers/<int:insta_id>', methods=['PATCH'])
@@ -171,14 +169,12 @@ def create_app(test_config=None):
             abort(404)
 
     '''
-        GET /saved
+        GET /saved-insta-fluencers
             it should respond with a 404 error if <insta_id> is not found
             it should update the corresponding row for <insta_id>
             it should require the 'update:influencer' permission
         returns status code 200 and json
         {"success": True, "instafluencer": instafluencer}
-        where drink an array containing only the updated drink
-        or appropriate status code indicating reason for failure
     '''
 
     @app.route('/saved-insta-fluencers')
