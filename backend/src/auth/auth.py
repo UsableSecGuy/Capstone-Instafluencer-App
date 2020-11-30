@@ -4,7 +4,7 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-
+# need to move this to setup file
 AUTH0_DOMAIN = 'fsnd-demo.us.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'instafluencer'

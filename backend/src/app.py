@@ -180,9 +180,14 @@ def create_app(test_config=None):
     def get_saved(jwt):
         try:
 
+            # check for here if get_saved messes up. make sure jwt is correct
             string2 = jwt
+            print("JWT: ")
+            print(jwt)
             decoded_base64 = base64.b64decode(str(string2).split(".")[1]+"==")
             user_name = json.loads(decoded_base64.decode("UTF-8"))['sub']
+
+            print("Username")
             print(user_name)
 
             saved_list = SavedInsta.query. \
